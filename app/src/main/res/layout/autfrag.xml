@@ -5,82 +5,81 @@
     android:padding="@dimen/activity_horizontal_margin"
     >
 
-
-    <EditText
+    <TextView
+        android:text="@string/Nombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:layout_marginTop="29dp"
-        android:id="@+id/port"
-        android:layout_below="@+id/IP"
-        android:layout_alignStart="@+id/IP" />
-
+        android:id="@+id/ViewName"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        />
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
-        android:ems="10"
-        android:id="@id/Nombre"
-        android:layout_alignBaseline="@+id/textView2"
-        android:layout_alignBottom="@+id/textView2"
-        android:layout_alignStart="@+id/Pass" />
+        android:text="@string/Nombre"
+        android:id="@+id/Nombre"
+        android:layout_alignBaseline="@id/ViewName"
+        android:layout_centerHorizontal="true"
+         />
+
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
-        android:ems="10"
         android:id="@+id/Pass"
-        android:layout_below="@+id/Nombre"
-        android:layout_alignStart="@+id/IP"
-        android:layout_marginTop="26dp" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="39dp"
-        android:id="@+id/textView8"
-        android:layout_below="@+id/textView3"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/IP" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView9"
-        android:layout_alignBaseline="@+id/port"
-        android:layout_alignBottom="@+id/port"
-        android:layout_alignStart="@+id/textView8" />
-
-    <TextView
-        android:text="@string/Password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView3"
-        android:layout_alignBaseline="@+id/Pass"
-        android:layout_alignBottom="@+id/Pass"
-        android:layout_alignStart="@+id/textView8" />
-
-    <TextView
-        android:text="@string/Nombre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/Nombre"
+        />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
-        android:ems="10"
+        android:text="@string/IP_Exam"
+
         android:id="@+id/IP"
-        android:layout_alignBaseline="@+id/textView8"
-        android:layout_alignBottom="@+id/textView8"
+        android:layout_alignBaseline="@+id/viewIP"
+        android:layout_below="@+id/Pass"
         android:layout_centerHorizontal="true" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:id="@+id/port"
+        android:layout_below="@+id/IP"
+        tools:text="@string/Puerto"
+        android:layout_centerHorizontal="true"/>
+
+
+    <TextView
+        android:text="@string/Puerto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:id="@+id/ViewPort"
+        android:layout_alignBaseline="@+id/port"
+        android:layout_alignBottom="@+id/port"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="@string/IP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/viewIP"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/Pass"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="@string/Password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:id="@+id/viewPass"
+        android:layout_alignBaseline="@+id/Pass"
+        android:layout_alignBottom="@+id/Pass"
+        android:layout_alignParentStart="true"
+         />
 </RelativeLayout>

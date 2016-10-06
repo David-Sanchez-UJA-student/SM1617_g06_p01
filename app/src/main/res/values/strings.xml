@@ -3,4 +3,7 @@
     <string name="main_title">oooo</string>
     <string name="Nombre">Name</string>
     <string name="Password">Pass</string>
+    <string name="Puerto">Puerto</string>
+    <string name="IP">IP</string>
+    <string name="IP_Exam">XXX.XXX.XXX.XXX</string>
 </resources>
