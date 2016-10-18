@@ -20,6 +20,9 @@ public class Autentication {
         this.mIP=IP;
         this.mPort=port;
     }
+    public Autentication(){
+
+    }
 
     public String getmUser(){
         return mUser;

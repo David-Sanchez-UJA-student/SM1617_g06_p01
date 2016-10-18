@@ -6,4 +6,5 @@
     <string name="Puerto">Puerto</string>
     <string name="IP">IP</string>
     <string name="IP_Exam">XXX.XXX.XXX.XXX</string>
+    <string name="Connect">Conectar</string>
 </resources>
