@@ -7,4 +7,5 @@
     <string name="IP">IP</string>
     <string name="IP_Exam">XXX.XXX.XXX.XXX</string>
     <string name="Connect">Conectar</string>
+    <string name="Informacion">Esta es una práctica de iniciación a la programación en Android</string>
 </resources>

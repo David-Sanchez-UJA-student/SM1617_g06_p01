@@ -63,7 +63,9 @@ public class AuthFragment extends Fragment{
                 aut.setmIP(ip.getText().toString());
                 Intent i;
                 i = new Intent(fragmento.getContext(),Activid2.class);
-                i.putExtra("datos",aut.getClass());
+                i.putExtra("User",aut.getmUser());
+                i.putExtra("Pass",aut.getmPass());
+                i.putExtra("IP",aut.getmIP());
                 startActivity(i);
             }
 

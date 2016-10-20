@@ -12,26 +12,12 @@
     <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Prueba!"
+    android:text="@string/Informacion"
     android:id="@+id/textView" />
-    <TextView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/main_title"
-        android:id="@+id/main_text_title"
-        android:background="#44345454"
-        android:padding="5dp"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="38dp" />
+        android:layout_height="match_parent"
+        android:id="@+id/main_frame"
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Boton de prueba!aa"
-        android:id="@+id/button"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="169dp" />
+        android:layout_below="@+id/textView"></FrameLayout>
 </RelativeLayout>
