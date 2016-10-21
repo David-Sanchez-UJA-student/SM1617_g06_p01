@@ -13,7 +13,7 @@ public class Primer extends AppCompatActivity {
         setContentView(R.layout.activity_primer);
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        AuthFragment au = AuthFragment.newInstance("pepe","12345");
+        AuthFragment au = AuthFragment.newInstance("","");
         ft.add(R.id.main_frame,au);
         ft.addToBackStack(null);
         ft.commit();

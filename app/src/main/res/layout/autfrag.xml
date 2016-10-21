@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="@string/Nombre"
+        android:text=""
         android:id="@+id/Nombre"
         android:layout_alignBaseline="@id/ViewName"
         android:layout_centerHorizontal="true"
@@ -59,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/viewIP"
-        android:layout_alignBaseline="@id/IP"
+        android:layout_alignBaseline="@+id/IP"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/ViewPort"
          />

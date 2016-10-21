@@ -22,6 +22,12 @@ public class AuthFragment extends Fragment{
     private String mUser="";
     private String mPass="";
 
+    private EditText user = null;
+    private EditText pass = null;
+    private EditText ip=null;
+
+    private Autentication autent=new Autentication();
+
     public AuthFragment(){
 
     }
@@ -36,44 +42,65 @@ public class AuthFragment extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mUser = getArguments().getString(ARG_PARAM1);
-            mPass = getArguments().getString(ARG_PARAM2);
+        if(savedInstanceState==null) {
+            if (getArguments() != null) {
+                mUser = getArguments().getString(ARG_PARAM1);
+                mPass = getArguments().getString(ARG_PARAM2);
+                autent.setmUser(mUser);
+                autent.setmPass(mPass);
+            }
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        if(savedInstanceState!=null){
+            autent.setmUser(savedInstanceState.getString(ARG_PARAM1));
+            autent.setmPass(savedInstanceState.getString(ARG_PARAM2));
+        }
         // Inflate the layout for this fragment
         final View fragmento = inflater.inflate(R.layout.autfrag, container, false);
 
-        final EditText user = (EditText)fragmento.findViewById(R.id.Nombre);
-        final EditText pass = (EditText)fragmento.findViewById(R.id.Pass);
-        final EditText ip=(EditText)fragmento.findViewById(R.id.IP);
+        //redibuja(fragmento);
+        user=(EditText)fragmento.findViewById(R.id.Nombre);
+        pass=(EditText)fragmento.findViewById(R.id.Pass);
         user.setText(mUser);
         pass.setText(mPass);
         Button boton = (Button)fragmento.findViewById(R.id.boton1);
         boton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Autentication aut= new Autentication();
-                aut.setmUser(user.getText().toString());
-                aut.setmPass(pass.getText().toString());
-                aut.setmIP(ip.getText().toString());
+               autent.setmUser(user.getText().toString());
+
                 Intent i;
                 i = new Intent(fragmento.getContext(),Activid2.class);
-                i.putExtra("User",aut.getmUser());
-                i.putExtra("Pass",aut.getmPass());
-                i.putExtra("IP",aut.getmIP());
+                i.putExtra("User",autent.getmUser());
+                i.putExtra("Pass",autent.getmPass());
+                i.putExtra("IP",autent.getmIP());
                 startActivity(i);
             }
 
                                  });
-        //TODO añadir el boton y el evento para enviar la informacion, añadir tambien el paso de parametros entre actividades.
+
 
         return fragmento;
 
     }
+    private void redibuja(View fragmento){
+        user=(EditText)fragmento.findViewById(R.id.Nombre);
+        pass=(EditText)fragmento.findViewById(R.id.Pass);
 
+
+        user.setText(autent.getmUser());
+        pass.setText(autent.getmPass());
+
+    }
+    /**public void onSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
+
+        outState.putString(ARG_PARAM1,autent.getmUser());
+        outState.putString(ARG_PARAM2, autent.getmPass());
+
+    }*/
 }
