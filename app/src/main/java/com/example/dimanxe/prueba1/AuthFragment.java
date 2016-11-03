@@ -31,6 +31,13 @@ public class AuthFragment extends Fragment{
     public AuthFragment(){
 
     }
+
+    /**
+     *
+     * @param user
+     * @param pass
+     * @return
+     */
     public static AuthFragment newInstance(String user, String pass) {
         AuthFragment fragment = new AuthFragment();
         Bundle args = new Bundle();
@@ -39,40 +46,51 @@ public class AuthFragment extends Fragment{
         fragment.setArguments(args);
         return fragment;
     }
+
+    /**
+     *
+     * @param savedInstanceState
+     */
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(savedInstanceState==null) {
-            if (getArguments() != null) {
-                mUser = getArguments().getString(ARG_PARAM1);
-                mPass = getArguments().getString(ARG_PARAM2);
-                autent.setmUser(mUser);
-                autent.setmPass(mPass);
-            }
+
+        //Si hay algo guardado previamente con savedInstanceState lo obtenemos. Si no buscamos a ver si hay algun argumento guardado.
+        if(savedInstanceState!=null) {
+            autent.setmUser(savedInstanceState.getString(ARG_PARAM1));
+            autent.setmPass(savedInstanceState.getString(ARG_PARAM2));
+        }else if (getArguments() != null) {
+            mUser = getArguments().getString(ARG_PARAM1);
+            mPass = getArguments().getString(ARG_PARAM2);
+
         }
 
     }
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        if(savedInstanceState!=null){
-            autent.setmUser(savedInstanceState.getString(ARG_PARAM1));
-            autent.setmPass(savedInstanceState.getString(ARG_PARAM2));
-        }
+
         // Inflate the layout for this fragment
         final View fragmento = inflater.inflate(R.layout.autfrag, container, false);
 
-        //redibuja(fragmento);
+        redibuja(fragmento);
         user=(EditText)fragmento.findViewById(R.id.Nombre);
         pass=(EditText)fragmento.findViewById(R.id.Pass);
-        user.setText(mUser);
-        pass.setText(mPass);
+        autent.getmUser();
         Button boton = (Button)fragmento.findViewById(R.id.boton1);
         boton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-               autent.setmUser(user.getText().toString());
 
+                autent.setmUser(user.getEditableText().toString());
                 Intent i;
                 i = new Intent(fragmento.getContext(),Activid2.class);
                 i.putExtra("User",autent.getmUser());
@@ -87,6 +105,11 @@ public class AuthFragment extends Fragment{
         return fragmento;
 
     }
+
+    /**
+     *
+     * @param fragmento
+     */
     private void redibuja(View fragmento){
         user=(EditText)fragmento.findViewById(R.id.Nombre);
         pass=(EditText)fragmento.findViewById(R.id.Pass);
@@ -96,11 +119,21 @@ public class AuthFragment extends Fragment{
         pass.setText(autent.getmPass());
 
     }
-    /**public void onSaveInstanceState(Bundle outState){
-        super.onSaveInstanceState(outState);
 
+    /**
+     *
+     * @param outState
+     */
+    public void onSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
+        //Se guardan los datos que hubiera en el objeto autent.
+        user=(EditText)AuthFragment.this.getView().findViewById(R.id.Nombre);
+        pass=(EditText)AuthFragment.this.getView().findViewById(R.id.Pass);
+        autent.setmUser(user.getEditableText().toString());
+       // mUser=autent.getmUser();
         outState.putString(ARG_PARAM1,autent.getmUser());
         outState.putString(ARG_PARAM2, autent.getmPass());
 
-    }*/
+    }
+
 }
