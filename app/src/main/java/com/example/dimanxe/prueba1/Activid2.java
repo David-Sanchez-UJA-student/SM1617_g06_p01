@@ -21,5 +21,6 @@ public class Activid2 extends AppCompatActivity {
         aut.setmIP(i.getStringExtra("IP"));
         TextView txt =(TextView) this.findViewById(R.id.textView2);
         txt.setText("Nombre:"+aut.getmUser()+"IP:"+aut.getmIP());
+        //TODO: Muestras la información sin ni siquiera espacios
     }
 }
