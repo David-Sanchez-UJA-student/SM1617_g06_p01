@@ -18,6 +18,7 @@ import android.content.Intent;
 public class AuthFragment extends Fragment{
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    //TODO: Te han faltado constantes para la IP y el puerto
 
     private String mUser="";
     private String mPass="";
@@ -39,6 +40,7 @@ public class AuthFragment extends Fragment{
      * @return
      */
     public static AuthFragment newInstance(String user, String pass) {
+        //TODO: Te ha faltado actualizar la IP y el puerto
         AuthFragment fragment = new AuthFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, user);
@@ -56,6 +58,7 @@ public class AuthFragment extends Fragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //TODO: Te han faltado la IP y el puerto
         //Si hay algo guardado previamente con savedInstanceState lo obtenemos. Si no buscamos a ver si hay algun argumento guardado.
         if(savedInstanceState!=null) {
             autent.setmUser(savedInstanceState.getString(ARG_PARAM1));
@@ -96,6 +99,7 @@ public class AuthFragment extends Fragment{
                 i.putExtra("User",autent.getmUser());
                 i.putExtra("Pass",autent.getmPass());
                 i.putExtra("IP",autent.getmIP());
+                //TODO: Te ha faltado el puerto el puerto
                 startActivity(i);
             }
 
@@ -115,6 +119,7 @@ public class AuthFragment extends Fragment{
         pass=(EditText)fragmento.findViewById(R.id.Pass);
 
 
+        //TODO: Te ha faltado actualizar la IP y el puerto
         user.setText(autent.getmUser());
         pass.setText(autent.getmPass());
 
@@ -133,6 +138,7 @@ public class AuthFragment extends Fragment{
        // mUser=autent.getmUser();
         outState.putString(ARG_PARAM1,autent.getmUser());
         outState.putString(ARG_PARAM2, autent.getmPass());
+        //TODO: Te han faltado la IP y el puerto
 
     }
 

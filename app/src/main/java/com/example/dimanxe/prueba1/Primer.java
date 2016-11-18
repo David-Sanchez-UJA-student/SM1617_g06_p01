@@ -14,8 +14,6 @@ public class Primer extends AppCompatActivity {
 
         FragmentManager fm = getSupportFragmentManager();
         if(fm.findFragmentById(R.id.main_frame)==null) {
-
-
             FragmentTransaction ft = fm.beginTransaction();
             AuthFragment au = AuthFragment.newInstance("", "");
             ft.add(R.id.main_frame, au);
@@ -23,4 +21,7 @@ public class Primer extends AppCompatActivity {
             ft.commit();
         }
     }
+
+    //TODO: hubiera estado bien tener un menú para mostrar algo más de información de la práctica
+
 }
