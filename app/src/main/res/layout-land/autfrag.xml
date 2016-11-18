@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="@string/IP_Exam"
+        android:hint="@string/IP_Exam"
         android:id="@+id/IP"
         android:layout_below="@id/port"
         android:layout_alignStart="@id/port"
