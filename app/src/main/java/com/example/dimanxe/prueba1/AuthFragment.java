@@ -18,14 +18,19 @@ import android.content.Intent;
 public class AuthFragment extends Fragment{
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    //TODO: Te han faltado constantes para la IP y el puerto
+    private static final String ARG_PARAM3= "param3";
+    private static final String ARG_PARAM4= "param4";
+
 
     private String mUser="";
     private String mPass="";
+    private int mPort=0;
+    private String mIP="";
 
     private EditText user = null;
     private EditText pass = null;
     private EditText ip=null;
+    private EditText port=null;
 
     private Autentication autent=new Autentication();
 
@@ -39,12 +44,14 @@ public class AuthFragment extends Fragment{
      * @param pass
      * @return
      */
-    public static AuthFragment newInstance(String user, String pass) {
-        //TODO: Te ha faltado actualizar la IP y el puerto
+    public static AuthFragment newInstance(String user, String pass, int port, String IP) {
+
         AuthFragment fragment = new AuthFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, user);
         args.putString(ARG_PARAM2, pass);
+        args.putInt(ARG_PARAM3,port);
+        args.putString(ARG_PARAM4,IP);
         fragment.setArguments(args);
         return fragment;
     }
@@ -58,14 +65,18 @@ public class AuthFragment extends Fragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //TODO: Te han faltado la IP y el puerto
+
         //Si hay algo guardado previamente con savedInstanceState lo obtenemos. Si no buscamos a ver si hay algun argumento guardado.
         if(savedInstanceState!=null) {
             autent.setmUser(savedInstanceState.getString(ARG_PARAM1));
             autent.setmPass(savedInstanceState.getString(ARG_PARAM2));
+            autent.mPort=savedInstanceState.getInt(ARG_PARAM3);
+            autent.setmIP(savedInstanceState.getString(ARG_PARAM4));
         }else if (getArguments() != null) {
             mUser = getArguments().getString(ARG_PARAM1);
             mPass = getArguments().getString(ARG_PARAM2);
+            mPort = getArguments().getInt(ARG_PARAM3);
+            mIP = getArguments().getString(ARG_PARAM4);
 
         }
 
@@ -88,18 +99,23 @@ public class AuthFragment extends Fragment{
         redibuja(fragmento);
         user=(EditText)fragmento.findViewById(R.id.Nombre);
         pass=(EditText)fragmento.findViewById(R.id.Pass);
-        autent.getmUser();
+        port=(EditText)fragmento.findViewById(R.id.port);
+        ip=(EditText)fragmento.findViewById(R.id.IP);
+        //autent.getmUser();
         Button boton = (Button)fragmento.findViewById(R.id.boton1);
         boton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
 
                 autent.setmUser(user.getEditableText().toString());
+                autent.setmPass(pass.getEditableText().toString());
+                autent.setmIP(ip.getEditableText().toString());
+                autent.mPort=Integer.parseInt(port.getEditableText().toString());
                 Intent i;
                 i = new Intent(fragmento.getContext(),Activid2.class);
                 i.putExtra("User",autent.getmUser());
                 i.putExtra("Pass",autent.getmPass());
                 i.putExtra("IP",autent.getmIP());
-                //TODO: Te ha faltado el puerto el puerto
+                i.putExtra("port","6000");
                 startActivity(i);
             }
 
@@ -117,11 +133,15 @@ public class AuthFragment extends Fragment{
     private void redibuja(View fragmento){
         user=(EditText)fragmento.findViewById(R.id.Nombre);
         pass=(EditText)fragmento.findViewById(R.id.Pass);
+        port=(EditText)fragmento.findViewById(R.id.port);
+        ip=(EditText)fragmento.findViewById(R.id.IP);
 
 
-        //TODO: Te ha faltado actualizar la IP y el puerto
+
         user.setText(autent.getmUser());
         pass.setText(autent.getmPass());
+        port.setText("6000");
+        ip.setText(autent.getmIP());
 
     }
 
@@ -134,11 +154,20 @@ public class AuthFragment extends Fragment{
         //Se guardan los datos que hubiera en el objeto autent.
         user=(EditText)AuthFragment.this.getView().findViewById(R.id.Nombre);
         pass=(EditText)AuthFragment.this.getView().findViewById(R.id.Pass);
+        port=(EditText)AuthFragment.this.getView().findViewById(R.id.port);
+        ip=(EditText)AuthFragment.this.getView().findViewById(R.id.IP);
+
         autent.setmUser(user.getEditableText().toString());
-       // mUser=autent.getmUser();
+        autent.setmPass(pass.getEditableText().toString());
+        autent.mPort=Integer.parseInt(port.getEditableText().toString());
+        autent.setmIP(ip.getEditableText().toString());
+        // mUser=autent.getmUser();
         outState.putString(ARG_PARAM1,autent.getmUser());
         outState.putString(ARG_PARAM2, autent.getmPass());
-        //TODO: Te han faltado la IP y el puerto
+        outState.putInt(ARG_PARAM3,autent.mPort);
+        outState.putString(ARG_PARAM4,autent.getmIP());
+
+
 
     }
 

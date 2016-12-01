@@ -15,7 +15,7 @@ public class Primer extends AppCompatActivity {
         FragmentManager fm = getSupportFragmentManager();
         if(fm.findFragmentById(R.id.main_frame)==null) {
             FragmentTransaction ft = fm.beginTransaction();
-            AuthFragment au = AuthFragment.newInstance("", "");
+            AuthFragment au = AuthFragment.newInstance("", "",6000,"");
             ft.add(R.id.main_frame, au);
             ft.addToBackStack(null);
             ft.commit();
