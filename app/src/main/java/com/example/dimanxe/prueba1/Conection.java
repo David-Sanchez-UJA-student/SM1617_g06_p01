@@ -1,13 +1,15 @@
 package com.example.dimanxe.prueba1;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.InetAddress;
+
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
@@ -16,18 +18,24 @@ import java.net.SocketAddress;
  * Created by dimanxe on 29/11/2016.
  */
 
-public class Conection extends AsyncTask<String,Float,String> {
+public class Conection extends AsyncTask<String,Float,Logeo> {
     public static final String PREFS_NAME = "MyPrefsFile";
+    private Context con;
 
+    Conection (Context con){
+        this.con=con;
+    }
 
 
     @Override
-    protected String doInBackground(String... params) {
-
+    protected Logeo doInBackground(String... params) {
+        Logeo log=new Logeo();
         Autentication aut = new Autentication();
 
         aut.setmUser(params[0]);
         aut.setmPass(params[1]);
+        log.setUser(aut.getmUser());
+        log.setPass(aut.getmPass());
         aut.setmIP(params[3]);
         aut.mPort = Integer.parseInt(params[2]);
         Socket sClient = null;
@@ -35,7 +43,7 @@ public class Conection extends AsyncTask<String,Float,String> {
 
         BufferedReader is = null;
         try {
-            SocketAddress sockaddr= new InetSocketAddress("192.168.1.40",6000);
+            SocketAddress sockaddr= new InetSocketAddress("192.168.1.134",6000);
             sClient = new Socket();
             sClient.connect(sockaddr,5000);
             is = new BufferedReader(new InputStreamReader(sClient.getInputStream()));
@@ -64,15 +72,33 @@ public class Conection extends AsyncTask<String,Float,String> {
                 e.printStackTrace();
             }
             if (resp.indexOf("ERROR") != -1) {
-                return "ERROR";// 1 usuario o pass incorrecto
+                log.setSid("ERROR");
+                log.setExpires("EXPIRED");
+                return log;// 1 usuario o pass incorrecto
             } else {
                 String sID = resp.substring(10);
-                //TODO guardar en preferencias compartidas
+                String[] exp = sID.split("&");
+                log.setSid(exp[0]);
+                exp=exp[1].split("=");
+                log.setExpires(exp[1]);
 
-                return sID;//2 para cuando usuario y pass correcto
+
+
+                return log;//2 para cuando usuario y pass correcto
             }
 
         }
-        return "ERROR";
+        return log;
+    }
+
+    @Override
+    protected void onPostExecute(Logeo s) {
+        super.onPostExecute(s);
+        SharedPreferences.Editor editor=con.getSharedPreferences(PREFS_NAME, con.MODE_PRIVATE).edit();
+        editor.putString("user",s.getUser());
+        editor.putString("sID", s.getSid());
+        editor.putString("Exp",s.getExpires());
+        editor.apply();
+
     }
 }

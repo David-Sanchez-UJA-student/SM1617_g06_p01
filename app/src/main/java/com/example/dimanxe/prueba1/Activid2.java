@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -14,6 +15,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.util.concurrent.ExecutionException;
 
 public class Activid2 extends AppCompatActivity {
 
@@ -31,12 +33,39 @@ public class Activid2 extends AppCompatActivity {
         aut.mPort=Integer.parseInt(i.getStringExtra("port"));
         TextView txt =(TextView) this.findViewById(R.id.textView2);
         txt.setText("Nombre:"+aut.getmUser()+"   IP:"+aut.getmIP());
-        new Conection().execute("USER","12345","6000","192.168.1.40");
+        Logeo log= null;
+        Conection con= new Conection(this);
+        try {
+            log=con.execute("USER","12345","6000","192.168.1.40").get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        if(log.getSid()==null){
+            Intent in;
+            in=new Intent(this,Primer.class);
+            startActivity(in);
+            Toast.makeText(this, "El servidor no esta activo", Toast.LENGTH_LONG).show();
+        }
+        else{
+            if(!log.getSid().equals("ERROR")){
+                Intent in;
+                in=new Intent(this,Activid3.class);
+                in.putExtra("User",log.getUser());
+                startActivity(in);
+            }else{
+                Intent in;
+                in=new Intent(this,Primer.class);
+                startActivity(in);
+                Toast.makeText(this, "Ha habido algún error en los datos de conexión", Toast.LENGTH_LONG).show();
+            }
 
+        }
 
     }
 
-    private class Conexion extends AsyncTask<String,Float,Integer>{
+    /**private class Conexion extends AsyncTask<String,Float,Integer>{
         public static final String PREFS_NAME="MyPrefsFile";
         @Override
         protected Integer doInBackground(String... params) {
@@ -91,5 +120,5 @@ public class Activid2 extends AppCompatActivity {
             }
             return null;
         }
-    }
+    }*/
 }
