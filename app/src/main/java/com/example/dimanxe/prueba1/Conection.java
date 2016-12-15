@@ -34,6 +34,7 @@ public class Conection extends AsyncTask<String,Float,Logeo> {
 
         aut.setmUser(params[0]);
         aut.setmPass(params[1]);
+
         log.setUser(aut.getmUser());
         log.setPass(aut.getmPass());
         aut.setmIP(params[3]);
@@ -43,7 +44,7 @@ public class Conection extends AsyncTask<String,Float,Logeo> {
 
         BufferedReader is = null;
         try {
-            SocketAddress sockaddr= new InetSocketAddress("192.168.1.134",6000);
+            SocketAddress sockaddr= new InetSocketAddress("192.168.1.134",6000);//TODO cambiar aquí los datos por los que se introducen desde el telefono
             sClient = new Socket();
             sClient.connect(sockaddr,5000);
             is = new BufferedReader(new InputStreamReader(sClient.getInputStream()));
@@ -55,7 +56,7 @@ public class Conection extends AsyncTask<String,Float,Logeo> {
         int count = 0;
         if (sClient != null && is != null && output != null) {
             try {
-                output.writeBytes("USER USER\r\n");
+                output.writeBytes("USER USER\r\n");//TODO idem
                 output.writeBytes("PASS 12345\r\n");
                 String responseLine;
                 while ((responseLine = is.readLine()) != null) {
@@ -74,7 +75,7 @@ public class Conection extends AsyncTask<String,Float,Logeo> {
             if (resp.indexOf("ERROR") != -1) {
                 log.setSid("ERROR");
                 log.setExpires("EXPIRED");
-                return log;// 1 usuario o pass incorrecto
+                return log;//
             } else {
                 String sID = resp.substring(10);
                 String[] exp = sID.split("&");
@@ -84,7 +85,7 @@ public class Conection extends AsyncTask<String,Float,Logeo> {
 
 
 
-                return log;//2 para cuando usuario y pass correcto
+                return log;//
             }
 
         }
@@ -98,7 +99,7 @@ public class Conection extends AsyncTask<String,Float,Logeo> {
         editor.putString("user",s.getUser());
         editor.putString("sID", s.getSid());
         editor.putString("Exp",s.getExpires());
-        editor.apply();
+        editor.commit();
 
     }
 }

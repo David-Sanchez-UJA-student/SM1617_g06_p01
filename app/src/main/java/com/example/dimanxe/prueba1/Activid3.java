@@ -11,9 +11,9 @@ public class Activid3 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activid3);
-        TextView txt=(TextView) this.findViewById(R.id.textView3);
+        TextView txt=(TextView) this.findViewById(R.id.cabecera);
         Intent i=getIntent();
         String user= i.getStringExtra("User");
-        txt.setText(user);
+        txt.setText("BIENVENIDO "+user+" AQUÍ PODRA BUSCAR LOS BILLETES INDICANDO ORIGEN, DESTINO Y FECHA");
     }
 }

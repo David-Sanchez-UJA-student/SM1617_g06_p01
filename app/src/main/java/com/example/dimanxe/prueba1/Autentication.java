@@ -14,7 +14,9 @@ public class Autentication {
     protected int mPort=SERVICE_PORT;
 
 
-    public Autentication(String user,String pass, String IP, int port){
+
+
+    public Autentication(String user, String pass, String IP, int port){
         this.mUser=user;
         this.mPass=pass;
         this.mIP=IP;
@@ -42,6 +44,8 @@ public class Autentication {
     public void setmIP(String ip){
         mIP=ip;
     }
-
+    public int getServicePort() {
+        return SERVICE_PORT;
+    }
 
 }
