@@ -21,9 +21,9 @@ public class Primer extends AppCompatActivity {
         setContentView(R.layout.activity_primer);
         SharedPreferences pr=getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         Logeo log=new Logeo();
-        if(pr.getAll().size()>0){
+        if(pr.getAll().size()>1){
 
-            log.setUser(pr.getString("user","no lo lee"));
+            log.setUser(pr.getString("user",""));
             log.setExpires(pr.getString("Exp",""));
             log.setSid(pr.getString("sID",""));
             if (!log.getExpires().equals("EXPIRED")){

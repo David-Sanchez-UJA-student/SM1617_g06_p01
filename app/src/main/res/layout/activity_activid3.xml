@@ -74,7 +74,7 @@
         android:layout_centerVertical="true"
         android:layout_alignEnd="@+id/DestView"
         android:id="@+id/FechaView"
-         />
+        android:layout_alignStart="@+id/DestView" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -84,8 +84,7 @@
         android:layout_alignTop="@+id/FechaView"
         android:layout_alignEnd="@+id/editDestino"
         android:id="@+id/editFecha"
-        android:layout_alignStart="@+id/editDestino"
-        android:layout_alignBottom="@+id/FechaView" />
+        android:layout_alignStart="@+id/editDestino" />
 
     <Button
         android:text="@string/Send"

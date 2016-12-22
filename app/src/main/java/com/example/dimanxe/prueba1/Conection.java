@@ -44,7 +44,7 @@ public class Conection extends AsyncTask<String,Float,Logeo> {
 
         BufferedReader is = null;
         try {
-            SocketAddress sockaddr= new InetSocketAddress("192.168.1.134",6000);//TODO cambiar aquí los datos por los que se introducen desde el telefono
+            SocketAddress sockaddr= new InetSocketAddress(aut.getmIP(),6000);//TODO cambiar aquí los datos por los que se introducen desde el telefono
             sClient = new Socket();
             sClient.connect(sockaddr,5000);
             is = new BufferedReader(new InputStreamReader(sClient.getInputStream()));
@@ -56,8 +56,8 @@ public class Conection extends AsyncTask<String,Float,Logeo> {
         int count = 0;
         if (sClient != null && is != null && output != null) {
             try {
-                output.writeBytes("USER USER\r\n");//TODO idem
-                output.writeBytes("PASS 12345\r\n");
+                output.writeBytes("USER "+aut.getmUser()+"\r\n");//TODO idem
+                output.writeBytes("PASS "+aut.getmPass()+"\r\n");
                 String responseLine;
                 while ((responseLine = is.readLine()) != null) {
                     if (count == 2) {
