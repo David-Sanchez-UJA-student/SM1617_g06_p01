@@ -29,9 +29,10 @@ public class Primer extends AppCompatActivity {
             if (!log.getExpires().equals("EXPIRED")){
                 SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-MM-dd-H-m-s");
                 long exp=0;
-                long exp2 = System.currentTimeMillis()+3600000;
+                long exp2 = System.currentTimeMillis();
+                Date fechaActual= new Date(exp2);
                 try {
-                    exp=dt1.parse(log.getExpires()).getTime()+360000;
+                    exp=dt1.parse(log.getExpires()).getTime();
                     //exp2=dt1.parse(log.getExpires()).getTime();
                 } catch (ParseException e) {
                     e.printStackTrace();
