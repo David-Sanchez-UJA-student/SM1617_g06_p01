@@ -58,6 +58,7 @@ public class Conection extends AsyncTask<String,Float,Logeo> {
             try {
                 output.writeBytes("USER "+aut.getmUser()+"\r\n");//TODO idem
                 output.writeBytes("PASS "+aut.getmPass()+"\r\n");
+                output.writeBytes("QUIT\r\n");
                 String responseLine;
                 while ((responseLine = is.readLine()) != null) {
                     if (count == 2) {
