@@ -69,7 +69,7 @@ public class Conection extends AsyncTask<String,Float,Logeo> {
                         count += 1;
                     }
                 }
-
+            sClient.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
