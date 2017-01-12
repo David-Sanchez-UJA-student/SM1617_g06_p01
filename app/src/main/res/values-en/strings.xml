@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Practica2</string>
+    <string name="Connect">Connect</string>
+    <string name="IP">IP</string>
+    <string name="Informacion">This a introduction to Android programming</string>
+    <string name="Nombre">Name</string>
+    <string name="Password">Pass</string>
+    <string name="Puerto">Port</string>
+    <string name="Send">Send</string>
+    <string name="dest">Destination</string>
+    <string name="fecha">Date</string>
+    <string name="org">Origin</string>
+</resources>
